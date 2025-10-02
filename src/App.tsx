@@ -18,12 +18,13 @@ import { FavoritesProvider } from "./context/FavoritesProvider";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("Home");
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="app-container">
       <FavoritesProvider>
         <Header />
-        <Logo />
+        <Logo onHamburgerClick={() => setMenuOpen(!isMenuOpen)} />
         <SearchBar />
         <Divider width="1095px" height="1px" color="#979797" />
         <Navbar onSelectCategory={setSelectedCategory} />

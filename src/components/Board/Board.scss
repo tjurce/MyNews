@@ -33,4 +33,17 @@
         margin-left: 8px;
     }
 
+    /* Mobile */
+    @media (max-width: 768px) {
+        margin-top: 209px;
+        margin-left: 16px;
+        width: 343px;
+
+        &__two-col,
+        &__three-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px; // spacing between items
+        }
+    }
 }

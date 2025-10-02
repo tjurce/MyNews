@@ -60,4 +60,8 @@
         line-height: 14px;
         letter-spacing: 0.1px;
     }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
