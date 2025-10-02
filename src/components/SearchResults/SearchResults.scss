@@ -1,0 +1,21 @@
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 140px;
+    margin-left: 250px;
+    width: 1095px;
+
+    &__title {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.15px;
+    }
+
+    &__three-col {
+        display: grid;
+        grid-template-columns: repeat(3, 321px);
+        gap: 24px;
+    }
+}

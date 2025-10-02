@@ -1,28 +1,46 @@
 import React, { useState } from "react";
 import "./Navbar.scss";
+import { useNavigate } from "react-router-dom";
 
-interface NavbarItem {
-  icon: string;
-  label: string;
-}
+const navItems = [
+  { icon: "/src/assets/Home.svg", label: "Home" },
+  { icon: "/src/assets/General.svg", label: "General" },
+  { icon: "/src/assets/Business.svg", label: "Business" },
+  { icon: "/src/assets/Health.svg", label: "Health" },
+  { icon: "/src/assets/Science.svg", label: "Science" },
+  { icon: "/src/assets/Sports.svg", label: "Sports" },
+  { icon: "/src/assets/Technology.svg", label: "Technology" },
+  { icon: "/src/assets/Star.svg", label: "Favorites" },
+];
 
 interface NavbarProps {
-  items: NavbarItem[];
+  onSelectCategory: (category: string) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ items }) => {
+//TODO: change favorites icon
+//TODO: red icon when active
+//TODO: no category should be active when article is open
+
+const Navbar: React.FC<NavbarProps> = ({ onSelectCategory }) => {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleCategoryChange = (index: number, label: string) => {
+    setActiveIndex(index);
+    onSelectCategory(label);
+    navigate("/");
+  };
 
   return (
     <nav className="navbar">
       <ul className="navbar__list">
-        {items.map((item, index) => (
+        {navItems.map((item, index) => (
           <li
             key={index}
             className={`navbar__item ${
               activeIndex === index ? "navbar__item--active" : ""
             }`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => handleCategoryChange(index, item.label)}
           >
             <img src={item.icon} alt={item.label} className="navbar__icon" />
             <div className="navbar__label">{item.label}</div>

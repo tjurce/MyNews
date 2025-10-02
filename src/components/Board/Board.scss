@@ -1,9 +1,8 @@
 .board {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    margin-top: 140px;
-    margin-left: 250px;
+    margin-top: 138px;
+    margin-left: 263px;
     width: 1095px;
 
     &__title {
@@ -11,57 +10,27 @@
         font-size: 18px;
         line-height: 24px;
         letter-spacing: -0.15px;
+        margin-bottom: 16px;
     }
 
     &__two-col {
         display: grid;
         grid-template-columns: repeat(2, 321px);
-        gap: 24px;
+        gap: 22px;
+        margin-bottom: 22px;
     }
 
     &__three-col {
         display: grid;
         grid-template-columns: repeat(3, 321px);
-        gap: 24px;
+        gap: 22px;
     }
 
-    &__item {
-        width: 321px;
-        height: 252px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
+    &__loading {
+        font-size: 14px;
+        font-weight: normal;
+        color: #888;
+        margin-left: 8px;
     }
 
-    &__image {
-        width: 100%;
-        height: 122px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 8px;
-    }
-
-    &__category {
-        font-weight: bold;
-        font-size: 10px;
-        line-height: 16px;
-        letter-spacing: -0.02px;
-        text-transform: uppercase;
-        color: #1E71BB;
-    }
-
-    &__title {
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: -0.11px;
-    }
-
-    &__author {
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 100%;
-        letter-spacing: -0.07px;
-        color: #555;
-    }
 }
