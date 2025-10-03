@@ -21,8 +21,8 @@ function App() {
 
   // Reset category to default when navigating back to home
   useEffect(() => {
+    console.log("test");
     if (location.pathname === "/") {
-      setSelectedCategory("Home");
       setMobileTab("featured");
     }
   }, [location.pathname]);
@@ -31,8 +31,12 @@ function App() {
     <div className="app-container">
       <FavoritesProvider>
         <Header />
-        <Logo onHamburgerClick={() => setMenuOpen(!isMenuOpen)} />
-        <SearchBar />
+        <Logo
+          onHamburgerClick={() => setMenuOpen(!isMenuOpen)}
+          isMenuOpen={isMenuOpen}
+        />
+
+        <SearchBar isMenuOpen={isMenuOpen} />
         <Divider width="1095px" height="1px" color="#979797" />
         <Navbar
           onSelectCategory={(category) => {

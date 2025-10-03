@@ -3,9 +3,13 @@ import "./Logo.scss";
 
 interface LogoProps {
   onHamburgerClick?: () => void;
+  isMenuOpen?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({ onHamburgerClick }) => {
+const Logo: React.FC<LogoProps> = ({
+  onHamburgerClick,
+  isMenuOpen = false,
+}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -13,30 +17,25 @@ const Logo: React.FC<LogoProps> = ({ onHamburgerClick }) => {
   };
 
   return (
-    <div className="logo">
-      {/* Wrap both spans in a clickable container */}
-      <span
-        className="logo__red"
-        onClick={handleClick}
-        style={{ cursor: "pointer" }}
-      >
-        My
-      </span>
-      <span
-        className="logo__black"
-        onClick={handleClick}
-        style={{ cursor: "pointer" }}
-      >
-        News
-      </span>
+    <>
+      <div className={`logo ${isMenuOpen ? "logo--menu-open" : ""}`}>
+        <span className="logo__red" onClick={handleClick}>
+          My
+        </span>
+        <span className="logo__black" onClick={handleClick}>
+          News
+        </span>
+      </div>
 
-      {/* Hamburger for mobile */}
       {onHamburgerClick && (
-        <button className="logo__hamburger" onClick={onHamburgerClick}>
-          <img src="/src/assets/Hamburger.png" alt="Menu" />
+        <button className="hamburger-btn" onClick={onHamburgerClick}>
+          <img
+            src={isMenuOpen ? "/src/assets/x.svg" : "/src/assets/Hamburger.png"}
+            alt={isMenuOpen ? "Close" : "Menu"}
+          />
         </button>
       )}
-    </div>
+    </>
   );
 };
 

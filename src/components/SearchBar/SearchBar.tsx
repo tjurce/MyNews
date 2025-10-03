@@ -3,7 +3,11 @@ import "./SearchBar.scss";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const SearchBar = () => {
+interface SearchBarProps {
+  isMenuOpen?: boolean; // new prop
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ isMenuOpen = false }) => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
@@ -22,7 +26,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search">
+    <div className={`${isMenuOpen ? "search--menu-open" : "search "}`}>
       <div className="search__wrapper">
         <FaSearch className="search__icon" />
         <input
