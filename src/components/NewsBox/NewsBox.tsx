@@ -5,8 +5,6 @@ import {
 } from "../../services/newsService";
 import "./NewsBox.scss";
 
-//TODO: refresh after some period
-
 const NewsBox = () => {
   const [articles, setArticles] = useState<NewsApiArticle[]>([]);
   const [loading, setLoading] = useState(true);

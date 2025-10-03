@@ -42,7 +42,7 @@
 
         font-size: 16px;
         font-weight: bold;
-        line-height: 20;
+        line-height: 20px;
         letter-spacing: -0.11px;
         color: #1d1d1b;
         height: 21px;
@@ -71,11 +71,9 @@
     &__item {
         width: 281px;
         height: 59px;
-
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-
         margin-left: 15px;
         margin-bottom: 12px;
     }
@@ -109,12 +107,8 @@
     /* -------- MOBILE LAYOUT -------- */
     @media (max-width: 768px) {
         position: static;
-        /* remove absolute positioning */
-        margin: 16px auto 0 auto;
-        /* center horizontally */
+        margin: 209px auto 0 auto;
         width: 343px;
-        /* match Figma mobile width */
         height: auto;
-        /* let it expand naturally */
     }
 }

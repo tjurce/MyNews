@@ -14,20 +14,15 @@ interface BoardProps {
 
 const Board: React.FC<BoardProps> = ({ categoryTitle }) => {
   const [articles, setArticles] = useState<NewsApiArticle[]>([]);
-
   const { favorites } = useFavorites();
 
   useEffect(() => {
     const loadNews = async () => {
       let data: NewsApiArticle[] = [];
-
-      if (categoryTitle === "Home") {
-        data = await fetchTopHeadlines();
-      } else if (categoryTitle === "Favorites") {
-        data = favorites;
-      } else {
+      if (categoryTitle === "Home") data = await fetchTopHeadlines();
+      else if (categoryTitle === "Favorites") data = favorites;
+      else
         data = await fetchTopHeadlinesByCategory(categoryTitle.toLowerCase());
-      }
       setArticles(data);
     };
     loadNews();
@@ -36,7 +31,6 @@ const Board: React.FC<BoardProps> = ({ categoryTitle }) => {
   const firstFour = articles.slice(0, 4);
   const rest = articles.slice(4);
 
-  //TODO: check all styles match to figma
   return (
     <div className="board">
       <span className="board__title">

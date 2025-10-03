@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.scss";
 import Board from "./components/Board/Board";
 import Divider from "./components/Divider/Divider";
@@ -17,6 +17,16 @@ function App() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState<"featured" | "latest">("featured");
 
+  const location = useLocation();
+
+  // Reset category to default when navigating back to home
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setSelectedCategory("Home");
+      setMobileTab("featured");
+    }
+  }, [location.pathname]);
+
   return (
     <div className="app-container">
       <FavoritesProvider>
@@ -24,56 +34,69 @@ function App() {
         <Logo onHamburgerClick={() => setMenuOpen(!isMenuOpen)} />
         <SearchBar />
         <Divider width="1095px" height="1px" color="#979797" />
-
-        <Navbar onSelectCategory={setSelectedCategory} isOpen={isMenuOpen} />
-
+        <Navbar
+          onSelectCategory={(category) => {
+            setSelectedCategory(category);
+            setMenuOpen(false);
+            setMobileTab("featured");
+          }}
+          isOpen={isMenuOpen}
+        />
         <Routes>
           <Route
             path="/"
             element={
               <>
-                {/* Desktop layout (hidden if menu open) */}
                 {!isMenuOpen && (
-                  <div className="desktop-layout">
-                    <NewsBox />
-                    <Board categoryTitle={selectedCategory} />
-                  </div>
-                )}
-
-                {/* Mobile layout (hidden if menu open) */}
-                {!isMenuOpen && (
-                  <div className="mobile-layout">
-                    <div className="mobile-tabs">
-                      <button
-                        className={`mobile-tabs__btn ${
-                          mobileTab === "featured" ? "active" : ""
-                        }`}
-                        onClick={() => setMobileTab("featured")}
-                      >
-                        Featured
-                      </button>
-                      <button
-                        className={`mobile-tabs__btn ${
-                          mobileTab === "latest" ? "active" : ""
-                        }`}
-                        onClick={() => setMobileTab("latest")}
-                      >
-                        Latest
-                      </button>
+                  <>
+                    {/* Desktop layout */}
+                    <div className="desktop-layout">
+                      <NewsBox />
+                      <Board categoryTitle={selectedCategory} />
                     </div>
 
-                    {mobileTab === "featured" ? (
-                      <Board categoryTitle={selectedCategory} />
-                    ) : (
-                      <NewsBox />
-                    )}
-                  </div>
+                    {/* Mobile layout */}
+                    <div className="mobile-layout">
+                      <div className="mobile-tabs">
+                        <button
+                          className={`mobile-tabs__btn featured-btn ${
+                            mobileTab === "featured" ? "active" : ""
+                          }`}
+                          onClick={() => setMobileTab("featured")}
+                        >
+                          Featured
+                        </button>
+                        <button
+                          className={`mobile-tabs__btn latest-btn ${
+                            mobileTab === "latest" ? "active" : ""
+                          }`}
+                          onClick={() => setMobileTab("latest")}
+                        >
+                          Latest
+                        </button>
+                      </div>
+
+                      <div className="mobile-content">
+                        {mobileTab === "featured" && (
+                          <Board categoryTitle={selectedCategory} />
+                        )}
+                        {mobileTab === "latest" && <NewsBox />}
+                      </div>
+                    </div>
+                  </>
                 )}
               </>
             }
           />
-          <Route path="/article/:slug" element={<Article />} />
-          <Route path="/search/:query" element={<SearchResults />} />
+
+          <Route
+            path="/article/:slug"
+            element={!isMenuOpen ? <Article /> : null}
+          />
+          <Route
+            path="/search/:query"
+            element={!isMenuOpen ? <SearchResults /> : null}
+          />
         </Routes>
       </FavoritesProvider>
     </div>

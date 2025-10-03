@@ -61,14 +61,26 @@
     }
 }
 
-/* Mobile */
+/* -------- MOBILE LAYOUT -------- */
 @media (max-width: 768px) {
     .article {
+        position: sticky;
+        top: 209px;
+        /* start 209px from top */
+        margin: 209px auto 0 auto;
+        /* center horizontally */
         width: 90%;
-        margin: 20px auto 0;
+        height: calc(100vh - 209px);
+        /* fill viewport below top offset */
+        overflow-y: auto;
+        /* scrollable content */
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
 
         &__image {
-            height: 250px;
+            height: 200px;
+            /* slightly shorter */
         }
 
         &__title {

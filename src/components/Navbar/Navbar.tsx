@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Navbar.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
   { icon: "/src/assets/Home.svg", label: "Home" },
@@ -23,6 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({
   isOpen = false,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const handleCategoryChange = (index: number, label: string) => {
@@ -30,6 +31,13 @@ const Navbar: React.FC<NavbarProps> = ({
     onSelectCategory(label);
     navigate("/");
   };
+
+  // Reset activeIndex to 0 (Home) when user is on "/"
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveIndex(0);
+    }
+  }, [location.pathname]);
 
   return (
     <nav className={`navbar ${isOpen ? "navbar--mobile-open" : ""}`}>
