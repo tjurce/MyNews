@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -15,14 +15,15 @@ const navItems = [
 
 interface NavbarProps {
   onSelectCategory: (category: string) => void;
+  isOpen?: boolean; // only used in mobile
 }
 
-//TODO: change favorites icon
-//TODO: red icon when active
-
-const Navbar: React.FC<NavbarProps> = ({ onSelectCategory }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  onSelectCategory,
+  isOpen = false,
+}) => {
   const navigate = useNavigate();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   const handleCategoryChange = (index: number, label: string) => {
     setActiveIndex(index);
@@ -31,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSelectCategory }) => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isOpen ? "navbar--mobile-open" : ""}`}>
       <ul className="navbar__list">
         {navItems.map((item, index) => (
           <li
@@ -42,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSelectCategory }) => {
             onClick={() => handleCategoryChange(index, item.label)}
           >
             <img src={item.icon} alt={item.label} className="navbar__icon" />
-            <div className="navbar__label">{item.label}</div>
+            <span className="navbar__label">{item.label}</span>
           </li>
         ))}
       </ul>

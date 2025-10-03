@@ -24,46 +24,51 @@ function App() {
         <Logo onHamburgerClick={() => setMenuOpen(!isMenuOpen)} />
         <SearchBar />
         <Divider width="1095px" height="1px" color="#979797" />
-        <Navbar onSelectCategory={setSelectedCategory} />
+
+        <Navbar onSelectCategory={setSelectedCategory} isOpen={isMenuOpen} />
 
         <Routes>
           <Route
             path="/"
             element={
               <>
-                {/* Desktop layout */}
-                <div className="desktop-layout">
-                  <NewsBox />
-                  <Board categoryTitle={selectedCategory} />
-                </div>
-
-                {/* Mobile layout */}
-                <div className="mobile-layout">
-                  <div className="mobile-tabs">
-                    <button
-                      className={`mobile-tabs__btn ${
-                        mobileTab === "featured" ? "active" : ""
-                      }`}
-                      onClick={() => setMobileTab("featured")}
-                    >
-                      Featured
-                    </button>
-                    <button
-                      className={`mobile-tabs__btn ${
-                        mobileTab === "latest" ? "active" : ""
-                      }`}
-                      onClick={() => setMobileTab("latest")}
-                    >
-                      Latest
-                    </button>
-                  </div>
-
-                  {mobileTab === "featured" ? (
-                    <Board categoryTitle={selectedCategory} />
-                  ) : (
+                {/* Desktop layout (hidden if menu open) */}
+                {!isMenuOpen && (
+                  <div className="desktop-layout">
                     <NewsBox />
-                  )}
-                </div>
+                    <Board categoryTitle={selectedCategory} />
+                  </div>
+                )}
+
+                {/* Mobile layout (hidden if menu open) */}
+                {!isMenuOpen && (
+                  <div className="mobile-layout">
+                    <div className="mobile-tabs">
+                      <button
+                        className={`mobile-tabs__btn ${
+                          mobileTab === "featured" ? "active" : ""
+                        }`}
+                        onClick={() => setMobileTab("featured")}
+                      >
+                        Featured
+                      </button>
+                      <button
+                        className={`mobile-tabs__btn ${
+                          mobileTab === "latest" ? "active" : ""
+                        }`}
+                        onClick={() => setMobileTab("latest")}
+                      >
+                        Latest
+                      </button>
+                    </div>
+
+                    {mobileTab === "featured" ? (
+                      <Board categoryTitle={selectedCategory} />
+                    ) : (
+                      <NewsBox />
+                    )}
+                  </div>
+                )}
               </>
             }
           />

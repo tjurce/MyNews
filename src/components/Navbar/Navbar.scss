@@ -10,7 +10,6 @@
         list-style: none;
         margin: 0;
         padding: 0;
-
         display: flex;
         flex-direction: column;
         gap: 25px;
@@ -61,7 +60,56 @@
         letter-spacing: 0.1px;
     }
 
+    /* --- MOBILE --- */
     @media (max-width: 768px) {
         display: none;
+        /* hidden by default */
+
+        &.navbar--mobile-open {
+            display: flex;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            background: transparent;
+            /* no background */
+            border: none;
+            padding: 0;
+
+            .navbar__list {
+                display: grid;
+                grid-template-columns: repeat(3, 80px);
+                gap: 24px;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .navbar__item {
+                background: transparent;
+                box-shadow: none;
+                width: auto;
+                height: auto;
+
+                .navbar__icon {
+                    width: 36px;
+                    height: 36px;
+                    margin-bottom: 6px;
+                }
+
+                .navbar__label {
+                    display: block;
+                    font-size: 12px;
+                    font-weight: bold;
+                    opacity: 0.8;
+                }
+            }
+
+            .navbar__item--active .navbar__label {
+                color: #BB1E1E;
+                opacity: 1;
+            }
+        }
     }
 }
