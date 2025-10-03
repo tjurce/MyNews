@@ -5,7 +5,6 @@ import {
 } from "../../services/newsService";
 import "./NewsBox.scss";
 
-//TODO: infinite scroll for latest news
 //TODO: refresh after some period
 
 const NewsBox = () => {

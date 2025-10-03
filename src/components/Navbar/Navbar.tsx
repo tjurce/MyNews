@@ -19,7 +19,6 @@ interface NavbarProps {
 
 //TODO: change favorites icon
 //TODO: red icon when active
-//TODO: no category should be active when article is open
 
 const Navbar: React.FC<NavbarProps> = ({ onSelectCategory }) => {
   const navigate = useNavigate();

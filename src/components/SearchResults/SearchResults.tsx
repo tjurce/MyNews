@@ -12,16 +12,10 @@ const SearchResults = () => {
     if (!query) return;
     const loadSearch = async () => {
       const data = await fetchEverything(query.toLowerCase());
-      //TODO: Filter results that have query only in title
-      /*       const filtered = data.filter((a: { title: string }) =>
-        a.title.toLowerCase().includes(query.toLowerCase())
-      ); */
       setArticles(data);
     };
     loadSearch();
   }, [query]);
-
-  if (!articles.length) return <div>No results for "{query}"</div>;
 
   return (
     <div className="search-results">

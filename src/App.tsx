@@ -12,13 +12,10 @@ import Article from "./components/Article/Article";
 import SearchResults from "./components/SearchResults/SearchResults";
 import { FavoritesProvider } from "./context/FavoritesProvider";
 
-//TODO: change icon
-//TODO: check font
-//TODO: move navItems in Navbar
-
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("Home");
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [mobileTab, setMobileTab] = useState<"featured" | "latest">("featured");
 
   return (
     <div className="app-container">
@@ -28,13 +25,45 @@ function App() {
         <SearchBar />
         <Divider width="1095px" height="1px" color="#979797" />
         <Navbar onSelectCategory={setSelectedCategory} />
+
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <NewsBox />
-                <Board categoryTitle={selectedCategory} />
+                {/* Desktop layout */}
+                <div className="desktop-layout">
+                  <NewsBox />
+                  <Board categoryTitle={selectedCategory} />
+                </div>
+
+                {/* Mobile layout */}
+                <div className="mobile-layout">
+                  <div className="mobile-tabs">
+                    <button
+                      className={`mobile-tabs__btn ${
+                        mobileTab === "featured" ? "active" : ""
+                      }`}
+                      onClick={() => setMobileTab("featured")}
+                    >
+                      Featured
+                    </button>
+                    <button
+                      className={`mobile-tabs__btn ${
+                        mobileTab === "latest" ? "active" : ""
+                      }`}
+                      onClick={() => setMobileTab("latest")}
+                    >
+                      Latest
+                    </button>
+                  </div>
+
+                  {mobileTab === "featured" ? (
+                    <Board categoryTitle={selectedCategory} />
+                  ) : (
+                    <NewsBox />
+                  )}
+                </div>
               </>
             }
           />

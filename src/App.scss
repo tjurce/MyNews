@@ -17,3 +17,48 @@
         padding: 1rem; // smaller padding for mobile
     }
 }
+
+/* Desktop layout is shown by default */
+.desktop-layout {
+    display: block;
+}
+
+.mobile-layout,
+.mobile-tabs {
+    display: none;
+}
+
+/* Mobile overrides */
+@media (max-width: 768px) {
+    .desktop-layout {
+        display: none;
+    }
+
+    .mobile-layout {
+        display: block;
+    }
+
+    .mobile-tabs {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 140px; // adjust relative to search bar
+        margin-bottom: 16px;
+
+        &__btn {
+            flex: 1;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+
+            &.active {
+                color: #BB1E1E;
+                border-bottom: 2px solid #BB1E1E;
+            }
+        }
+    }
+}

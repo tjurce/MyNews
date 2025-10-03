@@ -44,7 +44,6 @@ export const fetchEverything = async (query: string) => {
     return data.articles;
 };
 
-//TODO: q=latest or q=*
 export const fetchRecentNews = async (page: number = 1) => {
     const res = await fetch(
         `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=20&page=${page}&apiKey=${API_KEY}`
