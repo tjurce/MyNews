@@ -36,7 +36,7 @@ export const fetchTopHeadlinesByCategory = async (category: string = "general") 
 
 export const fetchEverything = async (query: string) => {
     const res = await fetch(
-        `${BASE_URL}everything?q=${encodeURIComponent(
+        `${BASE_URL}/everything?q=${encodeURIComponent(
             query
         )}&apiKey=${API_KEY}&pageSize=50`
     );
@@ -46,7 +46,7 @@ export const fetchEverything = async (query: string) => {
 
 export const fetchRecentNews = async (page: number = 1) => {
     const res = await fetch(
-        `${BASE_URL}everything?q=latest&sortBy=publishedAt&pageSize=20&page=${page}&apiKey=${API_KEY}`
+        `${BASE_URL}/everything?q=latest&sortBy=publishedAt&pageSize=20&page=${page}&apiKey=${API_KEY}`
     );
     const data = await res.json();
     return data.articles;
