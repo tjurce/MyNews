@@ -15,6 +15,7 @@ const Divider: React.FC<DividerProps> = ({
   return (
     <div
       className="divider"
+      role="separator"
       style={{
         width: typeof width === "number" ? `${width}px` : width,
         height: typeof height === "number" ? `${height}px` : height,
