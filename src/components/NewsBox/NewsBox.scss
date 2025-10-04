@@ -6,9 +6,13 @@
     width: 321px;
     height: 568px;
 
-    background: #f9f9f9;
-    border: 1px solid #ddd;
+    background: #ffffff;
     border-radius: 8px;
+    /* keep rounded corners */
+    box-shadow: 0px 1px 2px -1px #C8CAD1;
+    /* Figma shadow */
+    border: none;
+    /* remove border if shadow is enough */
 
     display: flex;
     flex-direction: column;
@@ -104,11 +108,20 @@
         word-break: break-word;
     }
 
-    /* -------- MOBILE LAYOUT -------- */
     @media (max-width: 768px) {
         position: static;
         margin: 209px auto 0 auto;
         width: 343px;
-        height: auto;
+        height: calc(100vh - 209px);
+        /* fill remaining viewport */
+        overflow-y: auto;
+        /* enable scrolling */
+        border-radius: 8px;
+        /* keep rounded corners */
+        box-shadow: 0px 1px 2px -1px #C8CAD1;
+        /* Figma shadow */
+        border: none;
+        /* remove border if shadow is enough */
     }
+
 }
