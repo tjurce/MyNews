@@ -18,6 +18,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMenuOpen = false }) => {
   const handleSearch = () => {
     if (query.trim()) {
       navigate(`/search/${encodeURIComponent(query)}`);
+      setQuery("");
     }
   };
 

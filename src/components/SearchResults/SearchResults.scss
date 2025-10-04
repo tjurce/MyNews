@@ -22,9 +22,10 @@
     /* -------- MOBILE LAYOUT -------- */
     @media (max-width: 768px) {
         position: sticky;
-        top: 209px;
+        top: 150px;
+        left: 19px;
         /* start 209px from top */
-        margin: 209px auto 0 auto;
+        margin: 150px auto 0 auto;
         /* center horizontally and offset */
         width: 343px;
         /* match mobile width */
@@ -47,9 +48,8 @@
         }
 
         &__title {
-            margin-left: 0;
-            text-align: center;
-            /* optional, center title */
+            position: relative;
+            left: -10px;
         }
     }
 }
