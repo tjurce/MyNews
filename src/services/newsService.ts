@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
+const API_KEY = "4240357ca3e5478f89e568ba20c67711"
 const BASE_URL = "https://newsapi.org/v2";
 
 export const fetchTopHeadlines = async () => {
