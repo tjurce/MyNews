@@ -29,7 +29,7 @@ npm run coverage
 
 ### Deployment Tip
 
-To quickly preview the app on your phone during development:
+To quickly preview the app on your phone:
 
 Run npm run dev -- --host
 
