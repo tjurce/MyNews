@@ -43,10 +43,6 @@ Open the shown network IP in your mobile browser
 
 React + TypeScript — type safety and component-driven structure
 
-Vite — fast development build tool with hot reloading
-
-React Router — client-side navigation (used via useNavigate and useParams)
-
 Vitest + React Testing Library — unit testing with realistic component rendering
 
 SCSS Modules — clean and scalable styling with BEM conventions
