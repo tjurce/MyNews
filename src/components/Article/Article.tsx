@@ -4,8 +4,6 @@ import "./Article.scss";
 import { useFavorites } from "../../context/useFavorites";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-//TODO: fallback by url if user refreshes page
-
 const Article = () => {
   const location = useLocation();
   const { article } = location.state as { article: NewsApiArticle };

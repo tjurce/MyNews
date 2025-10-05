@@ -15,7 +15,7 @@ const navItems = [
 
 interface NavbarProps {
   onSelectCategory: (category: string) => void;
-  isOpen?: boolean; // only used in mobile
+  isOpen?: boolean;
 }
 
 const Navbar: React.FC<NavbarProps> = ({

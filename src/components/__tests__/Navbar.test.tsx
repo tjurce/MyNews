@@ -4,7 +4,6 @@ import { vi } from "vitest";
 import * as vitest from "vitest";
 import { useNavigate } from "react-router-dom";
 
-// Mock react-router-dom's useNavigate
 vi.mock("react-router-dom", () => ({
   useNavigate: vi.fn(),
 }));
@@ -56,7 +55,6 @@ describe("Navbar component", () => {
     expect(mockOnSelectCategory).toHaveBeenCalledWith("Business");
     expect(mockNavigate).toHaveBeenCalledWith("/");
 
-    // The clicked item should now be active
     expect(businessItem).toHaveClass("navbar__item--active");
   });
 

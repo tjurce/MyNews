@@ -13,7 +13,7 @@ const Logo: React.FC<LogoProps> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/"); // navigate back to homepage / board
+    navigate("/");
   };
 
   return (

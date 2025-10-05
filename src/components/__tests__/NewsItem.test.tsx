@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import NewsItem from "../NewsItem/NewsItem";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 
-// Mock react-router-dom useNavigate
 const mockedNavigate = vi.fn();
 vi.mock("react-router-dom", async () => {
   const actual: typeof import("react-router-dom") = await vi.importActual(

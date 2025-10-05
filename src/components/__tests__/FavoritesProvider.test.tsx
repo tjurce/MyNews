@@ -63,11 +63,9 @@ describe("FavoritesProvider", () => {
     contextValue!.toggleFavorite(sampleArticle);
 
     await waitFor(() => {
-      // After state update
       expect(contextValue!.favorites).toHaveLength(1);
       expect(contextValue!.favorites[0].title).toBe("Breaking News");
 
-      // Remove favorite
       contextValue!.toggleFavorite(sampleArticle);
     });
 
@@ -94,7 +92,6 @@ describe("FavoritesProvider", () => {
 
     contextValue!.toggleFavorite(sampleArticle);
 
-    // Wait for localStorage effect to run
     await waitFor(() => {
       const stored = localStorage.getItem("favorites");
       expect(stored).not.toBeNull();

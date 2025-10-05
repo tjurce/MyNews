@@ -6,7 +6,6 @@ import Article from "../Article/Article";
 import { useFavorites } from "../../context/useFavorites";
 import { useLocation } from "react-router-dom";
 
-// Mock the context and router
 vi.mock("../../context/useFavorites");
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
@@ -28,13 +27,11 @@ describe("Article component", () => {
   const toggleFavorite = vi.fn();
 
   beforeEach(() => {
-    // Mock useFavorites hook
     (useFavorites as unknown as vitest.Mock).mockReturnValue({
       favorites: [],
       toggleFavorite,
     });
 
-    // Mock useLocation hook
     (useLocation as unknown as vitest.Mock).mockReturnValue({
       state: { article: mockArticle },
     });

@@ -47,7 +47,6 @@
         cursor: pointer;
     }
 
-    /* Mobile */
     @media (max-width: 768px) {
         position: fixed;
         top: 73px;
@@ -80,7 +79,6 @@
             font-size: 14px;
             padding-left: 40px;
             padding-right: 0;
-            /* no button on mobile */
             border-radius: 10px;
         }
 

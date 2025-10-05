@@ -5,6 +5,14 @@
     margin-left: 263px;
     width: 1095px;
 
+    &__category-title {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -0.15px;
+        margin-bottom: 16px;
+    }
+
     &__title {
         font-weight: bold;
         font-size: 18px;
@@ -33,22 +41,17 @@
         margin-left: 8px;
     }
 
-    /* -------- MOBILE LAYOUT -------- */
     @media (max-width: 768px) {
         position: sticky;
         top: 209px;
         margin: 209px;
-        /* reset desktop margins */
         width: 343px;
-        /* fixed mobile width */
         height: calc(100vh - 209px);
-        /* fill screen from 209px to bottom */
         overflow-y: auto;
 
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* center board horizontally */
 
         &__two-col,
         &__three-col {
@@ -56,11 +59,14 @@
             flex-direction: column;
             gap: 16px;
             width: 100%;
-            /* make items full width inside board */
         }
 
         &__title {
             margin-left: 0;
+        }
+
+        &__category-title {
+            display: none;
         }
     }
 }

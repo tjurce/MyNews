@@ -1,11 +1,9 @@
-// src/components/__tests__/Board.test.tsx
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import Board from "../Board/Board";
 import { MemoryRouter } from "react-router-dom";
 import type { NewsApiArticle } from "../../services/newsService";
 
-// Mock articles matching full NewsApiArticle interface
 const mockArticles: NewsApiArticle[] = [
   {
     source: { name: "Source 1" },
@@ -59,13 +57,11 @@ const mockArticles: NewsApiArticle[] = [
   },
 ];
 
-// Mock services
 vi.mock("../../services/newsService", () => ({
   fetchTopHeadlines: vi.fn(async () => mockArticles),
   fetchTopHeadlinesByCategory: vi.fn(async () => mockArticles),
 }));
 
-// Mock context
 vi.mock("../../context/useFavorites", () => ({
   useFavorites: () => ({
     favorites: mockArticles.slice(0, 2), // first 2 as favorites
@@ -98,12 +94,10 @@ describe("Board component", () => {
       expect(screen.getByText("Article 1")).toBeInTheDocument();
     });
 
-    // First four should be in board__two-col
     const twoCol = document.querySelector(".board__two-col");
     expect(twoCol?.textContent).toContain("Article 1");
     expect(twoCol?.textContent).toContain("Article 4");
 
-    // Rest should be in board__three-col
     const threeCol = document.querySelector(".board__three-col");
     expect(threeCol?.textContent).toContain("Article 5");
   });
@@ -120,7 +114,6 @@ describe("Board component", () => {
       expect(screen.getByText("Article 2")).toBeInTheDocument();
     });
 
-    // Should only render favorites
     expect(screen.queryByText("Article 3")).not.toBeInTheDocument();
   });
 

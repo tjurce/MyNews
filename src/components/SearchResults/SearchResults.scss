@@ -19,24 +19,17 @@
         gap: 24px;
     }
 
-    /* -------- MOBILE LAYOUT -------- */
     @media (max-width: 768px) {
         position: sticky;
         top: 150px;
         left: 19px;
-        /* start 209px from top */
         margin: 150px auto 0 auto;
-        /* center horizontally and offset */
         width: 343px;
-        /* match mobile width */
         height: calc(100vh - 209px);
-        /* fill rest of viewport */
         overflow-y: auto;
-        /* scrollable */
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* center content horizontally */
         gap: 16px;
 
         &__three-col {
@@ -44,7 +37,6 @@
             flex-direction: column;
             gap: 16px;
             width: 100%;
-            /* items full width */
         }
 
         &__title {

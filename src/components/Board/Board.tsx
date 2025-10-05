@@ -33,7 +33,7 @@ const Board: React.FC<BoardProps> = ({ categoryTitle }) => {
 
   return (
     <div className="board">
-      <span className="board__title">
+      <span className="board__category-title">
         {categoryTitle.charAt(0).toUpperCase() + categoryTitle.slice(1)}
       </span>
       <>

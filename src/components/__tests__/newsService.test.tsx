@@ -1,4 +1,3 @@
-// src/services/__tests__/newsService.test.ts
 import {
   fetchTopHeadlines,
   fetchTopHeadlinesByCategory,
@@ -54,18 +53,39 @@ describe("newsService", () => {
     expect(fetch).toHaveBeenCalledOnce();
   });
 
-  it("fetchEverything returns articles", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockResolvedValue({
-        ok: true,
-        json: async () => ({ articles: mockArticles }),
-      } as Response)
-    );
+  it("fetchEverything returns articles when query is not '*'", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ articles: mockArticles }),
+    } as Response);
+
+    vi.stubGlobal("fetch", mockFetch);
 
     const result = await fetchEverything("react");
     expect(result).toEqual(mockArticles);
-    expect(fetch).toHaveBeenCalledOnce();
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      expect.stringContaining("/everything?q=react")
+    );
+  });
+
+  it("fetchEverything returns articles when query is '*'", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ articles: mockArticles }),
+    } as Response);
+
+    vi.stubGlobal("fetch", mockFetch);
+
+    const result = await fetchEverything("*");
+    expect(result).toEqual(mockArticles);
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      expect.stringContaining("sortBy=publishedAt")
+    );
+    expect(mockFetch).toHaveBeenCalledWith(
+      expect.stringContaining("language=en")
+    );
   });
 
   it("fetchRecentNews returns articles", async () => {

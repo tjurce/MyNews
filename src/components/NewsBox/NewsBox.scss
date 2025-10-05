@@ -8,11 +8,8 @@
 
     background: #ffffff;
     border-radius: 8px;
-    /* keep rounded corners */
     box-shadow: 0px 1px 2px -1px #C8CAD1;
-    /* Figma shadow */
     border: none;
-    /* remove border if shadow is enough */
 
     display: flex;
     flex-direction: column;
@@ -108,20 +105,44 @@
         word-break: break-word;
     }
 
+    &__footer {
+        height: 51px;
+        width: 100%;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 14px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.1px;
+        color: #1E71BB;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        span:first-child {
+            margin-right: 5px;
+        }
+
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
+
+    &__footer:hover {
+        background: #f5f5f5;
+    }
+
     @media (max-width: 768px) {
         position: static;
         margin: 209px auto 0 auto;
         width: 343px;
         height: calc(100vh - 209px);
-        /* fill remaining viewport */
         overflow-y: auto;
-        /* enable scrolling */
         border-radius: 8px;
-        /* keep rounded corners */
         box-shadow: 0px 1px 2px -1px #C8CAD1;
-        /* Figma shadow */
         border: none;
-        /* remove border if shadow is enough */
     }
 
 }

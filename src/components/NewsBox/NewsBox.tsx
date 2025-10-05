@@ -4,6 +4,7 @@ import {
   type NewsApiArticle,
 } from "../../services/newsService";
 import "./NewsBox.scss";
+import { useNavigate } from "react-router-dom";
 
 const NewsBox = () => {
   const [articles, setArticles] = useState<NewsApiArticle[]>([]);
@@ -27,6 +28,12 @@ const NewsBox = () => {
     },
     [loading, hasMore]
   );
+
+  const navigate = useNavigate();
+
+  const handleSeeAll = () => {
+    navigate("/search/*");
+  };
 
   useEffect(() => {
     const loadNews = async () => {
@@ -63,37 +70,44 @@ const NewsBox = () => {
         </div>
 
         {articles.map((article, index) => {
+          const content = (
+            <>
+              <div className="newsbox__time">
+                {new Date(article.publishedAt).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: false,
+                })}
+              </div>
+              <div className="newsbox__article">{article.title}</div>
+            </>
+          );
+
           if (index === articles.length - 1) {
             return (
               <div key={index} ref={lastArticleRef} className="newsbox__item">
-                <div className="newsbox__time">
-                  {new Date(article.publishedAt).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: false,
-                  })}
-                </div>
-                <div className="newsbox__article">{article.title}</div>
-              </div>
-            );
-          } else {
-            return (
-              <div key={index} className="newsbox__item">
-                <div className="newsbox__time">
-                  {new Date(article.publishedAt).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: false,
-                  })}
-                </div>
-                <div className="newsbox__article">{article.title}</div>
+                {content}
               </div>
             );
           }
+          return (
+            <div key={index} className="newsbox__item">
+              {content}
+            </div>
+          );
         })}
 
         {loading && <p>Loading more news...</p>}
         {!hasMore && <p>No more news available</p>}
+      </div>
+
+      <div className="newsbox__footer" onClick={handleSeeAll}>
+        <span>See all news</span>
+        <img
+          className="newsbox__footer-arrow"
+          src="/src/assets/Arrow.svg"
+          alt="arrow"
+        ></img>
       </div>
     </div>
   );

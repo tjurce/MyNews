@@ -40,7 +40,6 @@
     }
 }
 
-/* Hamburger button fixed in top-right corner */
 .hamburger-btn {
     position: fixed;
     top: 24px;
@@ -59,7 +58,6 @@
         display: block;
     }
 
-    /* Hide on desktop */
     @media (min-width: 769px) {
         display: none;
     }

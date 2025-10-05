@@ -4,7 +4,7 @@ import { vi } from "vitest";
 
 describe("Header component", () => {
   beforeEach(() => {
-    vi.restoreAllMocks(); // Reset mocks before each test
+    vi.restoreAllMocks();
   });
 
   it("renders the title, description, and buttons", () => {

@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# 📰 React News App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A news web application built with **React + TypeScript**, fetching live news data from the [NewsAPI](https://newsapi.org/).  
+It includes features like top headlines, category filtering, search for news, latest news and article bookmarking.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Getting Started
 
-## React Compiler
+### 1. Install dependencies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Run app
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm run dev
 ```
+
+### You can also run tests and coverage with next commands
+
+```bash
+npm run test
+
+npm run coverage
+```
+
+### Deployment Tip
+
+To quickly preview the app on your phone during development:
+
+Run npm run dev -- --host
+
+Connect your phone to the same Wi-Fi
+
+Open the shown network IP in your mobile browser
+
+# Design overview
+
+## Tech Stack
+
+React + TypeScript — type safety and component-driven structure
+
+Vite — fast development build tool with hot reloading
+
+React Router — client-side navigation (used via useNavigate and useParams)
+
+Vitest + React Testing Library — unit testing with realistic component rendering
+
+SCSS Modules — clean and scalable styling with BEM conventions
+
+## Design decisions
+
+Each UI part (like NewsBox, SearchResults, NewsItem) is isolated and reusable, improving testability and readability. Each component and service is unit-tested with Vitest.
+
+Used custom hooks and context. Context handle global state (favorites) cleanly without prop drilling.
+
+The Favorites Context is used to manage bookmarked articles across the entire app.
+It provides a centralized state for favorite news items so that any component (e.g. NewsItem, FavoritesList, etc.) can easily access or modify the favorites without prop drilling. Multiple components (like the news feed, article view, and favorites page) need to read and update the same favorites list. Using React’s Context API avoids passing favorites and toggleFavorite through many levels of props. Favorites are saved to localStorage, so bookmarks remain available even after page reloads. The logic for adding/removing favorites is encapsulated inside FavoritesProvider. A custom hook (useFavorites) ensures that components can only access this context when wrapped in the provider, preventing usage errors.

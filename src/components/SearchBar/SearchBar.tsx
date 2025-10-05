@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 interface SearchBarProps {
-  isMenuOpen?: boolean; // new prop
+  isMenuOpen?: boolean;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ isMenuOpen = false }) => {

@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import NewsBox from "../NewsBox/NewsBox";
 import { vi, beforeEach, describe, it, expect } from "vitest";
 import type { NewsApiArticle } from "../../services/newsService";
 import * as newsService from "../../services/newsService";
 
-// Mock articles
 const mockArticles: NewsApiArticle[] = [
   {
     source: { name: "Test Source" },
@@ -28,15 +28,12 @@ const mockArticles: NewsApiArticle[] = [
   },
 ];
 
-// Mock fetchRecentNews using vi.mock
 vi.mock("../../services/newsService", () => ({
   fetchRecentNews: vi.fn(),
 }));
 
-// Type-safe reference to the mocked function
 const mockedFetchRecentNews = vi.mocked(newsService.fetchRecentNews);
 
-// Mock IntersectionObserver
 class MockIntersectionObserver {
   observe = vi.fn();
   disconnect = vi.fn();
@@ -52,7 +49,12 @@ describe("NewsBox component", () => {
 
   it("renders title and icons", () => {
     mockedFetchRecentNews.mockResolvedValue([]);
-    render(<NewsBox />);
+    render(
+      <MemoryRouter>
+        {" "}
+        <NewsBox />
+      </MemoryRouter>
+    );
     expect(screen.getByText("Latest News")).toBeInTheDocument();
     expect(screen.getByAltText("Outer oval")).toBeInTheDocument();
     expect(screen.getByAltText("Interior oval")).toBeInTheDocument();
@@ -61,7 +63,11 @@ describe("NewsBox component", () => {
   it("fetches and displays articles", async () => {
     mockedFetchRecentNews.mockResolvedValue(mockArticles);
 
-    render(<NewsBox />);
+    render(
+      <MemoryRouter>
+        <NewsBox />
+      </MemoryRouter>
+    );
 
     expect(screen.getByText("Loading more news...")).toBeInTheDocument();
 
@@ -76,7 +82,11 @@ describe("NewsBox component", () => {
   it("displays 'No more news available' when no articles left", async () => {
     mockedFetchRecentNews.mockResolvedValue([]);
 
-    render(<NewsBox />);
+    render(
+      <MemoryRouter>
+        <NewsBox />
+      </MemoryRouter>
+    );
 
     await waitFor(() => {
       expect(screen.getByText("No more news available")).toBeInTheDocument();

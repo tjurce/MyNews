@@ -13,7 +13,6 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "lcov"],
       all: true,
-      // ⚡ Exclude config files and test files
       exclude: [
         "**/node_modules/**",
         "**/tests/**",

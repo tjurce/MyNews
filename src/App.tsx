@@ -19,7 +19,6 @@ function App() {
 
   const location = useLocation();
 
-  // Reset category to default when navigating back to home
   useEffect(() => {
     console.log("test");
     if (location.pathname === "/") {
@@ -53,13 +52,11 @@ function App() {
               <>
                 {!isMenuOpen && (
                   <>
-                    {/* Desktop layout */}
                     <div className="desktop-layout">
                       <NewsBox />
                       <Board categoryTitle={selectedCategory} />
                     </div>
 
-                    {/* Mobile layout */}
                     <div className="mobile-layout">
                       <div className="mobile-tabs">
                         <button
